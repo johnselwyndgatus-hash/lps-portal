@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPS Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div id="auth-section" class="container">
+        <div class="header">
+            <h1>LYCEUM PSYCHOLOGICAL SOCIETY</h1>
+            <p>DEPARTMENT OF PSYCHOLOGY</p>
+        </div>
+        
+        <div id="login-form" class="card">
+            <h2>Sign In</h2>
+            <input type="email" id="login-email" placeholder="School Email Account">
+            <div class="password-container">
+                <input type="password" id="login-pass" placeholder="Password">
+                <button type="button" onclick="togglePass('login-pass')">👁️</button>
+            </div>
+            <button class="btn-primary" onclick="login()">Login</button>
+            <p>Don't have an account? <span class="link" onclick="showRegister()">Create Account</span></p>
+            <p class="link" onclick="alert('Please contact the Department Admin to reset password.')">Forgot Password?</p>
+        </div>
+
+        <div id="register-form" class="card" style="display:none;">
+            <h2>Create Account</h2>
+            <input type="text" id="reg-name" placeholder="Full Name">
+            <input type="email" id="reg-email" placeholder="School Email">
+            <input type="password" id="reg-pass" placeholder="Password">
+            <button class="btn-primary" onclick="register()">Register</button>
+            <p>Already have an account? <span class="link" onclick="showLogin()">Back to Sign In</span></p>
+        </div>
+    </div>
+
+    <div id="main-portal" style="display:none;">
+        <nav class="navbar">
+            <span class="logo">LPS PORTAL</span>
+            <div class="nav-links">
+                <button onclick="showTab('home')">Home</button>
+                <button onclick="showTab('grades')">Grades</button>
+                <button onclick="showTab('schedule')">Schedule</button>
+                <button id="admin-nav" style="display:none;" onclick="showTab('admin')">ADMIN PANEL</button>
+                <button class="logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <section id="home-tab" class="tab-content">
+                <h1 id="welcome-msg">Welcome, Student!</h1>
+                <div class="card">
+                    <h3>Announcements</h3>
+                    <p id="announcement-text">Welcome to the new semester, Psychology students!</p>
+                </div>
+                <div class="card">
+                    <h3>Mission & Vision</h3>
+                    <p><strong>Mission:</strong> To advance the science and practice of psychology within the Lyceum community.</p>
+                    <p><strong>Vision:</strong> Leading excellence in psychological services and student development.</p>
+                </div>
+            </section>
+
+            <section id="grades-tab" class="tab-content" style="display:none;">
+                <h2>My Grades</h2>
+                <div id="grades-list"></div>
+            </section>
+
+            <section id="admin-tab" class="tab-content" style="display:none;">
+                <h2>Admin Management</h2>
+                <div class="card">
+                    <h3>Edit Announcements</h3>
+                    <textarea id="edit-announcement"></textarea>
+                    <button onclick="saveAnnouncement()">Update Home</button>
+                </div>
+                <div class="card">
+                    <h3>Registered Students</h3>
+                    <table border="1" id="admin-student-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="student-list-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
